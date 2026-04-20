@@ -302,239 +302,193 @@ body.light-mode .user-profile { background: rgba(255,255,255,0.8); border: 1px s
 .legal-separator {
     color: #555;
 }
-/* ===== RESPONSIVE DESIGN PARA MÓVILES ===== */
+
+/* ===== RESPONSIVE DESIGN PARA MÓVILES (VERSIÓN FINAL OPTIMIZADA) ===== */
 @media screen and (max-width: 768px) {
+    /* Tamaño base de iconos - forzado */
+    .material-symbols-outlined {
+        font-size: 26px !important;
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    }
+
     body {
         grid-template-columns: 1fr !important;
         grid-template-rows: auto auto 1fr auto !important;
         height: 100vh;
         overflow: hidden;
+        font-size: 16px;
     }
 
     /* Cabecera */
     header {
-        grid-column: 1 / -1;
-        padding: 0 15px;
-        height: 60px;
-        flex-wrap: wrap;
+        padding: 8px 12px;
+        min-height: 60px;
+        gap: 10px;
     }
     header h3 {
-        font-size: 16px;
-        letter-spacing: 1px;
+        font-size: 20px;
     }
     .search-bar {
-        width: 180px;
-        padding: 8px 12px;
-        font-size: 13px;
+        width: 100%;
+        max-width: 220px;
+        padding: 12px 16px;
+        font-size: 16px;
+        order: 3;
+        margin-top: 5px;
+    }
+    .profile-area {
+        margin-left: auto;
     }
     .user-profile {
-        padding: 3px 3px 3px 10px;
-    }
-    .user-profile span {
-        display: none; /* Oculta el nombre en móvil para ahorrar espacio */
+        padding: 6px 10px 6px 14px;
     }
     .user-profile img {
-        width: 30px;
-        height: 30px;
+        width: 40px;
+        height: 40px;
     }
 
-    /* Barra lateral (aside) */
+    /* Barra lateral horizontal */
     aside {
-        grid-column: 1 / -1;
-        grid-row: 2;
-        width: 100%;
-        height: auto;
-        padding: 10px 15px;
-        border-right: none;
-        border-bottom: 1px solid var(--glass-border);
+        padding: 10px 12px;
+        gap: 12px;
         overflow-x: auto;
-        overflow-y: hidden;
-        white-space: nowrap;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        background: rgba(0,0,0,0.3);
-        backdrop-filter: blur(var(--glass-blur));
-    }
-    aside p {
-        display: none; /* Ocultamos los títulos "MI BIBLIOTECA" y "EXPLORAR" */
+        -webkit-overflow-scrolling: touch;
+        background: rgba(0,0,0,0.4);
+        backdrop-filter: blur(20px);
     }
     .nav-btn {
-        display: inline-flex;
-        padding: 8px 14px;
-        margin-bottom: 0;
-        font-size: 12px;
-        white-space: nowrap;
-        background: rgba(255,255,255,0.03);
-        border-radius: 20px;
-        flex-shrink: 0;
+        padding: 12px 20px;
+        font-size: 16px;
+        gap: 12px;
+        border-radius: 40px;
+        background: rgba(255,255,255,0.08);
     }
-    .nav-btn .delete-pl {
-        display: none; /* Ocultamos el botón de eliminar playlist en móvil por espacio */
+    .nav-btn .material-symbols-outlined {
+        font-size: 24px !important;
     }
     .btn-create-pl {
-        display: inline-flex;
-        width: auto;
-        margin-top: 0;
-        margin-left: 5px;
-        padding: 8px 15px;
-        font-size: 12px;
-        flex-shrink: 0;
+        padding: 12px 20px;
+        font-size: 16px;
+        gap: 10px;
+        border-radius: 40px;
     }
-    .sidebar-divider {
-        display: none;
-    }
-    #playlist_menu {
-        display: contents; /* Para que las playlists se muestren en línea */
+    .btn-create-pl .material-symbols-outlined {
+        font-size: 22px !important;
     }
 
-    /* Contenido principal */
+    /* Grid de canciones */
     main {
-        grid-column: 1 / -1;
-        grid-row: 3;
-        padding: 15px;
-        overflow-y: auto;
+        padding: 16px 12px;
     }
     .grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 12px;
+        gap: 16px;
     }
     .card {
-        padding: 10px;
-        border-radius: 14px;
+        padding: 14px;
     }
     .card h3 {
-        font-size: 12px;
+        font-size: 15px;
     }
     .card p {
-        font-size: 10px;
+        font-size: 13px;
     }
-    .yt-badge {
-        top: 8px;
-        left: 8px;
-        font-size: 8px;
-        padding: 2px 6px;
+    /* Iconos dentro de tarjetas */
+    .card .icon-btn {
+        width: 36px !important;
+        height: 36px !important;
+    }
+    .card .icon-btn .material-symbols-outlined {
+        font-size: 20px !important;
     }
 
     /* Reproductor */
     .player {
-        grid-column: 1 / -1;
-        grid-row: 4;
-        grid-template-columns: 1fr;
-        grid-template-rows: auto auto auto;
-        padding: 12px 15px;
-        height: auto;
-        min-height: 130px;
-        gap: 8px;
-    }
-    .player-track-info-standard {
-        justify-content: flex-start;
+        padding: 16px 16px 24px;
+        gap: 15px;
+        background: rgba(8,8,8,0.95);
+        border-top-left-radius: 24px;
+        border-top-right-radius: 24px;
     }
     .cover-wrapper {
-        width: 48px;
-        height: 48px;
+        width: 60px;
+        height: 60px;
     }
     #track_title_standard {
-        font-size: 13px;
+        font-size: 18px;
     }
     .status-label {
-        font-size: 10px;
-    }
-    .controls {
-        width: 100%;
-        gap: 5px;
-    }
-    .ctrl-row {
-        gap: 15px;
-    }
-    .play-main {
-        font-size: 36px !important;
-    }
-    .progress-bar-container {
-        font-size: 10px;
-    }
-    .volume-container {
-        display: none; /* Ocultamos volumen en móvil por espacio (puede ajustarse con gestos del sistema) */
-    }
-    .minimize-btn {
-        top: 10px;
-        left: 15px;
-        font-size: 24px;
-    }
-
-    /* Modo expandido en móvil */
-    body.player-expanded {
-        grid-template-rows: 60px 0px 1fr !important;
-    }
-    body.player-expanded .player {
-        grid-template-rows: auto 1fr auto;
-        padding: 20px 15px;
-    }
-    body.player-expanded .immersive-cover-container {
-        margin-top: 0;
-    }
-    .immersive-cover {
-        width: 70vw;
-        height: 70vw;
-        max-width: 300px;
-        max-height: 300px;
-    }
-    body.player-expanded .controls {
-        width: 100%;
-    }
-    body.player-expanded .player-info-immersive h2 {
-        font-size: 20px;
-    }
-    body.player-expanded .player-info-immersive p {
         font-size: 14px;
     }
+    .ctrl-row {
+        gap: 24px;
+    }
+    .ctrl-row .icon-btn {
+        width: 56px;
+        height: 56px;
+    }
+    .ctrl-row .material-symbols-outlined {
+        font-size: 36px !important;
+    }
+    .play-main {
+        font-size: 56px !important;
+    }
+    .play-main .material-symbols-outlined {
+        font-size: 56px !important;
+    }
+    .progress-bar-container {
+        font-size: 14px;
+    }
+    input[type="range"] {
+        height: 6px;
+    }
 
-    /* Toast */
-    #toast {
-        bottom: 140px;
-        padding: 10px 20px;
-        font-size: 13px;
+    /* Modo expandido */
+    body.player-expanded .player {
+        padding: 24px 16px;
+    }
+    .immersive-cover {
+        width: 80vw;
+        height: 80vw;
+        max-width: 350px;
+        max-height: 350px;
+    }
+    body.player-expanded .player-info-immersive h2 {
+        font-size: 24px;
     }
 
     /* Modales */
     .glass-modal {
-        width: 90%;
-        max-width: 320px;
-        padding: 20px;
+        width: 94%;
+        padding: 24px 18px;
     }
     .modal-header {
+        font-size: 20px;
+    }
+    .glass-input {
+        padding: 16px;
         font-size: 16px;
     }
-    .btn-group {
-        flex-direction: column;
-        gap: 8px;
+    .btn-accent, .btn-danger, .btn-ghost {
+        padding: 16px;
+        font-size: 18px;
     }
 
-    /* Landing page */
+    /* Landing */
     .landing-card {
-        max-width: 90%;
         padding: 30px 20px;
     }
     .landing-logo {
-        width: 90px;
-        height: 90px;
+        width: 110px;
+        height: 110px;
     }
     .landing-title {
-        font-size: 32px;
-    }
-    .landing-description {
-        font-size: 14px;
-    }
-    .landing-transparency {
-        padding: 12px 15px;
-        font-size: 12px;
+        font-size: 40px;
     }
     .landing-login-btn {
-        padding: 14px 20px;
-        font-size: 16px;
+        padding: 18px 28px;
+        font-size: 20px;
     }
-    .landing-legal {
-        flex-wrap: wrap;
-        gap: 5px;
+    .landing-login-btn .material-symbols-outlined {
+        font-size: 28px !important;
     }
 }
