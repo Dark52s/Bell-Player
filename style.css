@@ -281,3 +281,24 @@ body.light-mode .user-profile { background: rgba(255,255,255,0.8); border: 1px s
     color: #666;
     letter-spacing: 1px;
 }
+.landing-legal {
+    margin-top: 20px;
+    font-size: 13px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    color: #777;
+}
+.landing-legal a {
+    color: #aaa;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+.landing-legal a:hover {
+    color: var(--accent);
+    text-decoration: underline;
+}
+.legal-separator {
+    color: #555;
+}
