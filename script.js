@@ -329,12 +329,43 @@ async function initCloudStorage() {
     listMusic();
 }
 
+// --- NUEVA FUNCIÓN LISTMUSIC (PAGINADA) ---
 async function listMusic() {
-    const resp = await fetch(`https://www.googleapis.com/drive/v3/files?q=mimeType contains 'audio/'&fields=files(id, name)&key=${API_KEY}`, { headers: { Authorization: `Bearer ${accessToken}` } });
-    const data = await resp.json();
-    musicFiles = data.files.map(f => ({ ...f, source: 'drive' })); // Identificamos origen
-    showLibrary();
-    renderPlaylists();
+    musicFiles = []; 
+    let pageToken = '';
+    
+    document.getElementById('music_grid').innerHTML = '<div style="color:var(--text-muted); width:100%; text-align:center; margin-top:50px;">Cargando toda la música...</div>';
+
+    try {
+        do {
+            let queryUrl = `https://www.googleapis.com/drive/v3/files?q=mimeType contains 'audio/'&pageSize=1000&fields=nextPageToken,files(id, name)&key=${API_KEY}`;
+            if (pageToken) {
+                queryUrl += `&pageToken=${pageToken}`;
+            }
+
+            const resp = await fetch(queryUrl, { 
+                headers: { Authorization: `Bearer ${accessToken}` } 
+            });
+
+            if (!resp.ok) throw new Error('Error al cargar la música');
+
+            const data = await resp.json();
+            
+            const currentBatch = data.files.map(f => ({ ...f, source: 'drive' }));
+            musicFiles = musicFiles.concat(currentBatch);
+            
+            pageToken = data.nextPageToken;
+
+        } while (pageToken);
+
+        showLibrary();
+        renderPlaylists();
+        notify(`Se cargaron ${musicFiles.length} canciones`, "library_music");
+
+    } catch (error) {
+        console.error("Error cargando archivos de Drive:", error);
+        notify("Error al cargar la música", "error");
+    }
 }
 
 function getTrackMeta(id, defaultName) {
